@@ -1699,6 +1699,7 @@ function wechat_wechat_build_response_message($response_message, $request_messag
       $event_key = $request_message_wrapper->wechat_event_key->value();
       //watchdog('wechat', 'event_key：' . $event_key);
       if (!empty($event_key)) {
+        if($event_key > 10000000){$response_message_wrapper->wechat_content->set('欢迎来到会员服务系统！'); return;}
         $uid = $event_key;
         $openid = $request_message->from_user_name;
         $result = wechat_connect_user($uid, $openid);
