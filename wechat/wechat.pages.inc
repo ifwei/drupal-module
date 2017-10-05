@@ -16,6 +16,7 @@ function wechat_callback() {
   $request_data = $we_obj->getRevData();
   //watchdog('wechat', '123');
   $request_message = wechat_build_request_message($request_data);
+  if ($request_message->msg_type == 'text') {$we_obj->transfer_customer_service()->reply();exit;}
   //watchdog('wechat', '123456'); 
   $response_message = wechat_build_response_message($request_message);
   $response_message->send();
